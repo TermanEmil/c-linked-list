@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eterman <terman.emil@gmail.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/22 11:38:52 by eterman           #+#    #+#             */
+/*   Updated: 2017/04/14 16:25:48 by eterman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "t_list.h"
+#include <stdlib.h>
+#include <string.h>
+
+t_list		*ft_lstnew(void const *content, size_t content_size)
+{
+	t_list	*result;
+
+	result = (t_list*)malloc(sizeof(t_list));
+	if (result == NULL)
+		return (NULL);
+	result->next = NULL;
+	if (content == NULL)
+	{
+		result->content = NULL;
+		result->content_size = 0;
+	}
+	else
+	{
+		result->content = ft_memdup(content, content_size);
+		result->content_size = content_size;
+	}
+	return (result);
+}
